@@ -38,16 +38,15 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
       list.adapter = adapter
       fab.setOnClickListener { fab ->
         viewModel.loadData()
-        Snackbar.make(fab, "Updating articles", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(fab, R.string.action_articles_refresh, Snackbar.LENGTH_LONG).show()
       }
     }
     viewModel.articles.observe(viewLifecycleOwner) {
-      Log.i("TAG", "updateData!! $it")
       adapter.updateData(it)
     }
     viewModel.errorMessage.observe(viewLifecycleOwner) {
       Snackbar.make(binding.fab, it, Snackbar.LENGTH_LONG)
-        .setAction("Retry") {
+        .setAction(R.string.action_retry) {
           viewModel.loadData()
         }.show()
     }

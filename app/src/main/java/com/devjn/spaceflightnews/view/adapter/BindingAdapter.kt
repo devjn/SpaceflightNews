@@ -2,21 +2,18 @@ package com.devjn.spaceflightnews.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
-abstract class BindingAdapter<BINDING : ViewDataBinding, ITEM>(protected var items: List<ITEM>) :
+abstract class BindingAdapter<BINDING : ViewBinding, ITEM>(protected var items: List<ITEM>) :
   RecyclerView.Adapter<BindingAdapter.BindViewHolder<BINDING>>() {
 
-  @get:LayoutRes
-  protected abstract val layoutId: Int
+  protected abstract fun inflate(inflater: LayoutInflater, parent: ViewGroup) : BINDING
 
   abstract fun bind(binding: BINDING, item: ITEM)
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = BindViewHolder(
-    DataBindingUtil.inflate<BINDING>(LayoutInflater.from(parent.context), layoutId, parent, false)
+    inflate(LayoutInflater.from(parent.context), parent)
   )
 
   override fun onBindViewHolder(holder: BindViewHolder<BINDING>, position: Int) {
@@ -30,5 +27,6 @@ abstract class BindingAdapter<BINDING : ViewDataBinding, ITEM>(protected var ite
     notifyDataSetChanged()
   }
 
-  class BindViewHolder<BINDING : ViewDataBinding>(val binder: BINDING) : RecyclerView.ViewHolder(binder.root)
+  class BindViewHolder<BINDING : ViewBinding>(val binder: BINDING) :
+    RecyclerView.ViewHolder(binder.root)
 }

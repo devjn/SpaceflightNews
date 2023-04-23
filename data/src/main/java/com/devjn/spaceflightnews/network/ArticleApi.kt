@@ -8,5 +8,7 @@ import retrofit2.http.Query
 
 interface ArticleApi {
   @GET("articles")
-  suspend fun getArticles(@Query("_limit") limit: Int = 7): Response<List<Article>>
+  suspend fun getArticles(@Query("_limit") limit: Int = 10): Response<List<Article>>
+
+  
 }

@@ -32,6 +32,11 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     return binding.root
   }
 
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     binding.apply {
@@ -55,10 +60,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     }
   }
 
-  override fun onDestroyView() {
-    super.onDestroyView()
-    _binding = null
-  }
+
 
   class NewsListModelFactory(
     private val articleApi: ArticleApi = Provider.provideArticleApi()

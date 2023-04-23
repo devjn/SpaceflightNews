@@ -1,16 +1,20 @@
 package com.devjn.spaceflightnews.view.adapter
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.devjn.spaceflightnews.R
 import com.devjn.spaceflightnews.data.Article
 import com.devjn.spaceflightnews.databinding.ListItemArticleBinding
 
 class ArticleAdapter(items: List<Article>) : BindingAdapter<ListItemArticleBinding, Article>(items) {
-  override val layoutId = R.layout.list_item_article
+  override fun inflate(inflater: LayoutInflater, parent: ViewGroup) = ListItemArticleBinding
+    .inflate(inflater, parent, false)
 
-  override fun bind(binding: ListItemArticleBinding, article: Article) {
-    binding.article = article
-    binding.executePendingBindings()
-    Glide.with(binding.root).load(article.imageUrl).centerCrop().into(binding.image)
+  override fun bind(binding: ListItemArticleBinding, item: Article) {
+    binding.apply {
+      txtTitle.text = item.title
+      txtSummary.text = item.summary
+      Glide.with(binding.root).load(item.imageUrl).centerCrop().into(binding.image)
+    }
   }
 }

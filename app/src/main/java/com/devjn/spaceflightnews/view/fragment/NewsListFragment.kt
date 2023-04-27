@@ -1,11 +1,11 @@
-package com.devjn.spaceflightnews.view
+package com.devjn.spaceflightnews.view.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -25,9 +25,18 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
   private val viewModel: NewsListViewModel by viewModels { NewsListModelFactory() }
   private var _binding: FragmentNewsListBinding? = null
   private val binding get() = _binding!!
-  private val adapter = ArticleAdapter(emptyList())
+  private val adapter = ArticleAdapter(emptyList()) {
+    parentFragmentManager.commit {
+      replace(R.id.fragment_container_view, ArticleDetailFragment.newInstance(it))
+      addToBackStack(null)
+    }
+  }
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
     _binding = FragmentNewsListBinding.inflate(inflater, container, false)
     return binding.root
   }
@@ -60,8 +69,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list) {
     }
   }
 
-
-
+  @Suppress("UNCHECKED_CAST")
   class NewsListModelFactory(
     private val articleApi: ArticleApi = Provider.provideArticleApi()
   ) : ViewModelProvider.Factory {

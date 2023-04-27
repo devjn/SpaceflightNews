@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 abstract class BindingAdapter<BINDING : ViewBinding, ITEM>(protected var items: List<ITEM>) :
   RecyclerView.Adapter<BindingAdapter.BindViewHolder<BINDING>>() {
 
-  protected abstract fun inflate(inflater: LayoutInflater, parent: ViewGroup) : BINDING
+  protected abstract fun inflate(inflater: LayoutInflater, parent: ViewGroup): BINDING
 
   abstract fun bind(binding: BINDING, item: ITEM)
 

@@ -1,7 +1,9 @@
 plugins {
     id("com.jfayz.android-application")
     id("com.google.devtools.ksp")
+    id("com.jfayz.compose")
 }
+
 android {
     namespace = "com.devjn.spaceflightnews"
 
@@ -28,6 +30,7 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
     implementation(libs.glide)
+    implementation(libs.glide.compose)
     ksp(libs.glide.ksp)
 
     testImplementation(libs.junit)

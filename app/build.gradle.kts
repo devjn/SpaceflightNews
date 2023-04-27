@@ -9,6 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.jfayz.spaceflightnews"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -34,5 +35,5 @@ dependencies {
     ksp(libs.glide.ksp)
 
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.bundles.androidx.test)
 }

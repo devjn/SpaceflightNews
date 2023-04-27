@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.devjn.spaceflightnews"
+    namespace = "com.devjn.spaceflightnews.data"
 }
 
 dependencies {

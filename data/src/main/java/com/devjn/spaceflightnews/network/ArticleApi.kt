@@ -10,5 +10,6 @@ interface ArticleApi {
   @GET("articles")
   suspend fun getArticles(@Query("_limit") limit: Int = 10): Response<List<Article>>
 
-  
+  @GET("articles/{id}")
+  suspend fun getArticle(@Path("id") id: Int): Response<Article>
 }

@@ -79,5 +79,4 @@ class NewsListViewModelTest {
       errorMessage.value = null
     }
   }
-
 }

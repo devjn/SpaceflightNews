@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class NewsListViewModel(
-  private val articleApi: ArticleApi,
+  private val articleApi: ArticleApi
 ) : ViewModel() {
   val articles = MutableLiveData<List<Article>>(emptyList())
   val errorMessage = MutableLiveData<String>()
@@ -32,5 +32,4 @@ class NewsListViewModel(
     errorMessage.postValue(message)
     Logger.logError(message)
   }
-
 }
